@@ -3,13 +3,12 @@ package com.example.gooddeeds;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity(tableName = "job_tbl",
         primaryKeys = {"id", "userGmail"})
 public class Job {
 
-    public Job(@NonNull String userGmail, String id, String title, String description, String address, int reward, String workerEmail) {
+    public Job(@NonNull String userGmail, @NonNull String id, String title, String description, String address, int reward, String workerEmail) {
         this.userGmail = userGmail;
         this.id = id;
         this.title = title;

@@ -108,6 +108,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             holder.waitWorkers.setVisibility(View.GONE);
             holder.removeBtn.setVisibility(View.GONE);
+
+
+
         }
 
 

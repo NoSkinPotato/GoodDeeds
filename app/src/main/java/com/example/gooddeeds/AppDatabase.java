@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-@Database(entities = {Job.class, User.class, DeclinedJob.class}, version = 11)
+@Database(entities = {Job.class, User.class, DeclinedJob.class}, version = 12)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract JobClassDAO jobDao();
 
