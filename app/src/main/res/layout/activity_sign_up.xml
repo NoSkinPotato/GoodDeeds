@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#35374B"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".SignUp_Activity">
+
+
+    <ImageView
+        android:id="@+id/BackBtn"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:layout_gravity="left"
+        app:srcCompat="@drawable/arrow" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:gravity="center|center_vertical"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="#64C3BF"
+        android:layout_marginVertical="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <EditText
+                android:id="@+id/firstName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="First Name"
+                android:textColor="#7077A1"
+                android:textColorHint="#7077A1"
+                android:textSize="15sp" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Last Name"
+                android:textColor="#7077A1"
+                android:textColorHint="#7077A1"
+                android:textSize="15sp" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Email"
+                android:inputType="text|textEmailAddress"
+                android:textColor="#7077A1"
+                android:textColorHint="#7077A1"
+                android:textSize="15sp" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Phone Number"
+                android:inputType="number"
+                android:textColor="#7077A1"
+                android:textColorHint="#7077A1"
+                android:textSize="15sp" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Address"
+                android:textColor="#7077A1"
+                android:textColorHint="#7077A1"
+                android:textSize="15sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="#35374B"
+                android:paddingHorizontal="5dp">
+
+                <EditText
+                    android:id="@+id/createPass"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="5"
+                    android:backgroundTint="@android:color/transparent"
+                    android:hint="Create Password"
+                    android:textColor="#7077A1"
+                    android:textColorHint="#7077A1"
+                    android:inputType="textPassword"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/passCreateSign"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="0dp"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/password_eye" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:strokeWidth="4dp"
+            app:strokeColor="#64C3BF"
+            android:layout_marginVertical="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="#35374B"
+                android:paddingHorizontal="5dp">
+
+                <EditText
+                    android:id="@+id/confirmPass"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="5"
+                    android:backgroundTint="@android:color/transparent"
+                    android:hint="Confirm Password"
+                    android:textColor="#7077A1"
+                    android:textColorHint="#7077A1"
+                    android:inputType="textPassword"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/passConfirmSign"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="0dp"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/password_eye" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/signErrMsg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center|bottom"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/SignUpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
+        android:layout_weight="0.15"
+        android:backgroundTint="#64C3BF"
+        android:gravity="center"
+        android:paddingHorizontal="55dp"
+        android:text="Sign Up"
+        android:textSize="20sp"
+        app:cornerRadius="15dp" />
+
+
+</LinearLayout>

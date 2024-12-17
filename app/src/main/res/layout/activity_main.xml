@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#35374B"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.25"
+        android:orientation="vertical"
+        android:paddingTop="150px">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome!"
+            android:textAlignment="center"
+            android:textColor="#64C3BF"
+            android:textSize="55sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do Good | Feel Good"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22.5sp" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2.5"
+        android:contentDescription="good deeds logo"
+        android:padding="50px"
+        app:srcCompat="@drawable/good_deeds" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#35374B"
+            android:gravity="center"
+            android:paddingHorizontal="150px"
+            android:paddingVertical="20px"
+            android:text="Login"
+            android:textColor="#64C3BF"
+            android:textSize="25sp"
+            app:cornerRadius="30px"
+            app:strokeColor="#64C3BF"
+            app:strokeWidth="8px" />
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#64C3BF"
+            android:gravity="center"
+            android:paddingHorizontal="120px"
+            android:paddingVertical="20px"
+            android:text="Sign Up"
+            android:textSize="25sp"
+            app:cornerRadius="30px"
+            app:strokeColor="#64C3BF"
+            app:strokeWidth="8px" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
