@@ -2,6 +2,7 @@ package com.example.gooddeeds;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,7 +46,28 @@ public class Profile_Activity extends AppCompatActivity {
         address.setText(currUser.address);
         email.setText(currUser.email);
 
+        Button logoutBtn = findViewById(R.id.logOutBtn);
 
+        logoutBtn.setOnClickListener(e -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        LinearLayout homeBtn = findViewById(R.id.homeButton);
+
+        homeBtn.setOnClickListener(e -> {
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            intent.putExtra("User", currUser);
+            startActivity(intent);
+        });
+
+        LinearLayout chatBtn = findViewById(R.id.chatButton);
+
+        chatBtn.setOnClickListener(e -> {
+            Intent intent  = new Intent(this, ChatMenuActivity.class);
+            intent.putExtra("User", currUser);
+            startActivity(intent);
+        });
 
     }
 }

@@ -109,7 +109,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             holder.waitWorkers.setVisibility(View.GONE);
             holder.removeBtn.setVisibility(View.GONE);
 
+            holder.declineBtn.setOnClickListener(func -> {
 
+
+                DeclinedJob dj = new DeclinedJob(currUser.email, job.userGmail, job.id);
+                dao.InsertDeclineJob(dj);
+
+                Intent intent = new Intent(context, MainMenuActivity.class);
+                intent.putExtra("User", currUser);
+                context.startActivity(intent);
+            });
+
+            holder.acceptBtn.setOnClickListener(func -> {
+                dao.AssignWorkerToJob(currUser.email, job.userGmail, job.id);
+
+                Intent intent = new Intent(context, MainMenuActivity.class);
+                intent.putExtra("User", currUser);
+                context.startActivity(intent);
+            });
 
         }
 

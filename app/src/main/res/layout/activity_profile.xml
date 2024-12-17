@@ -151,6 +151,17 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/logOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="0.2"
+            android:backgroundTint="#FF0000"
+            android:text="Log Out"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

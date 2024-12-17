@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -20,14 +22,15 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ChatMenuActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
     private User currUser;
+    private User otherUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_chat_menu);
+        setContentView(R.layout.activity_chat);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -35,47 +38,45 @@ public class ChatMenuActivity extends AppCompatActivity {
         });
 
         currUser = (User) getIntent().getSerializableExtra("User");
+        otherUser = (User) getIntent().getSerializableExtra("OtherUser");
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler mainHandler = new Handler(Looper.getMainLooper());
 
-        RecyclerView chatView = findViewById(R.id.ChatView);
-        chatView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView chatBoxView = findViewById(R.id.ChatBoxView);
+        chatBoxView.setLayoutManager(new LinearLayoutManager(this));
 
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
         executor.execute(() -> {
-            List<User> users = db.jobDao().getAllChatUsers(currUser.email);
+            List<Chat> messages = db.jobDao().getAllMessagesWithID(currUser.email, otherUser.email);
 
             mainHandler.post(() -> {
-                if(!users.isEmpty()){
-                    Log.d("JIPIPIPI", "Stupid");
-                    ChatAdapter adapter = new ChatAdapter(users, currUser, this);
-                    chatView.setAdapter(adapter);
+                if(!messages.isEmpty()){
+                    ChatBoxAdapter adapter = new ChatBoxAdapter(messages);
+                    chatBoxView.setAdapter(adapter);
                 }else{
-                    Log.d("GABABA", "Stupid");
-                    chatView.setVisibility(View.INVISIBLE);
+                    chatBoxView.setVisibility(View.INVISIBLE);
                 }
             });
 
         });
 
-        LinearLayout homeBtn = findViewById(R.id.homeButton);
 
-        homeBtn.setOnClickListener(e -> {
-            Intent intent = new Intent(this, MainMenuActivity.class);
-            intent.putExtra("User", currUser);
-            startActivity(intent);
+        EditText inputField = findViewById(R.id.inputChat);
+        ImageView enterBtn = findViewById(R.id.EnterChatBtn);
+
+        enterBtn.setOnClickListener(e -> {
+            if (inputField.getText().length() > 0){
+                int newID = db.jobDao().getMaxChat(currUser.email, otherUser.email);
+                String newChatID = currUser.email + "#" + otherUser.email;
+                Chat newChat = new Chat(newChatID, newID + 1, inputField.getText().toString());
+                db.jobDao().insertMessage(newChat);
+
+                this.recreate();
+            }
         });
-
-        LinearLayout profBtn = findViewById(R.id.profileButton);
-
-        profBtn.setOnClickListener(e -> {
-            Intent intent  = new Intent(this, Profile_Activity.class);
-            intent.putExtra("User", currUser);
-            startActivity(intent);
-        });
-
 
     }
+
 }

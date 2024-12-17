@@ -78,6 +78,13 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        LinearLayout chatBtn = findViewById(R.id.chatButton);
+
+        chatBtn.setOnClickListener(e -> {
+            Intent intent  = new Intent(this, ChatMenuActivity.class);
+            intent.putExtra("User", currUser);
+            startActivity(intent);
+        });
 
     }
 }
