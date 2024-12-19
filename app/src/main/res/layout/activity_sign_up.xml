@@ -14,14 +14,16 @@
     <ImageView
         android:id="@+id/BackBtn"
         android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
         android:paddingHorizontal="10dp"
         android:layout_gravity="left"
         app:srcCompat="@drawable/arrow" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
         android:text="Create Account"
         android:gravity="center|center_vertical"
         android:textSize="35sp"
@@ -32,7 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:orientation="vertical"
         android:layout_marginHorizontal="15dp">
 
@@ -103,6 +105,7 @@
                 android:textColorHint="#7077A1"
                 android:textSize="15sp" />
         </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -111,7 +114,8 @@
             app:cardCornerRadius="15dp"
             app:strokeWidth="4dp"
             app:strokeColor="#64C3BF"
-            android:layout_marginVertical="5dp">
+            android:layout_marginVertical="5dp"
+            android:layout_marginRight="5dp">
 
             <EditText
                 android:id="@+id/phone"
@@ -122,10 +126,12 @@
                 android:backgroundTint="@android:color/transparent"
                 android:hint="Phone Number"
                 android:inputType="number"
+                android:gravity="center_vertical|left"
                 android:textColor="#7077A1"
                 android:textColorHint="#7077A1"
                 android:textSize="15sp" />
         </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"

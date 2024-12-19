@@ -53,4 +53,8 @@ public interface JobClassDAO {
     @Query("SELECT * FROM user_tbl WHERE email = :email")
     User getUserbyEmail(String email);
 
+    @Query("Select text from chat_tbl where (chatID like '%' || :email1 || '%' and chatID like '%' || :email2 || '%')" +
+            "and textID = (Select Max(textID) from chat_tbl where (chatID like '%' || :email1 || '%' and chatID like '%' || :email2 || '%'))")
+    String getLastText(String email1, String email2);
+
 }

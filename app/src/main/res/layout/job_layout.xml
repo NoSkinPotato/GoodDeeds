@@ -98,10 +98,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
-                android:paddingVertical="20dp"
                 android:text="Awaiting Workers"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold" />
 
             <Button
@@ -115,7 +116,9 @@
                 android:paddingVertical="10dp"
                 android:text="Remove"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold"
                 app:cornerRadius="20dp" />
 
@@ -130,7 +133,9 @@
                 android:paddingVertical="15dp"
                 android:text="Accept"
                 android:textColor="#35374B"
-                android:textSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold"
                 app:cornerRadius="15dp"
                 />
@@ -146,7 +151,9 @@
                 android:paddingVertical="15dp"
                 android:text="Decline"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold"
                 app:cornerRadius="15dp"/>
 

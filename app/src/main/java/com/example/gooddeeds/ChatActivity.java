@@ -51,15 +51,17 @@ public class ChatActivity extends AppCompatActivity {
         executor.execute(() -> {
             List<Chat> messages = db.jobDao().getAllMessagesWithID(currUser.email, otherUser.email);
 
-            mainHandler.post(() -> {
-                if(!messages.isEmpty()){
-                    ChatBoxAdapter adapter = new ChatBoxAdapter(messages);
-                    chatBoxView.setAdapter(adapter);
-                }else{
-                    chatBoxView.setVisibility(View.INVISIBLE);
-                }
-            });
+           mainHandler.post(() -> {
+               if(!messages.isEmpty()){
+                   Log.d("Jab", "Cunt1");
+                   ChatBoxAdapter adapter = new ChatBoxAdapter(messages, currUser);
+                   chatBoxView.setAdapter(adapter);
 
+               }else{
+                   Log.d("Jab", "Cunt2");
+                   chatBoxView.setVisibility(View.INVISIBLE);
+               }
+           });
         });
 
 
@@ -73,8 +75,19 @@ public class ChatActivity extends AppCompatActivity {
                 Chat newChat = new Chat(newChatID, newID + 1, inputField.getText().toString());
                 db.jobDao().insertMessage(newChat);
 
+                inputField.setText("");
+
                 this.recreate();
             }
+        });
+
+
+        ImageView backBtn = findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(e -> {
+            Intent intent = new Intent(this, ChatMenuActivity.class);
+            intent.putExtra("User", currUser);
+            startActivity(intent);
         });
 
     }

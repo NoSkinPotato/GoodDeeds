@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#35374B"
-    android:windowSoftInputMode="adjustResize|stateHidden"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".ChatActivity">
 
     <LinearLayout
@@ -90,14 +90,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@android:color/transparent"
-                    android:gravity="top|left"
+                    android:gravity="center_vertical|left"
                     android:imeOptions="flagNoEnterAction"
                     android:inputType="textMultiLine"
                     android:maxLines="5"
                     android:overScrollMode="always"
                     android:scrollbars="vertical"
-                    android:text="INput sadasd dsa d asd asd sda sa d as sd as d as "
-                    android:textSize="17sp" />
+                    android:text=""
+                    android:textSize="17sp"
+                    android:paddingHorizontal="10dp"/>
 
             </com.google.android.material.card.MaterialCardView>
 

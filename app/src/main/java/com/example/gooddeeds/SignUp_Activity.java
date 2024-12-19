@@ -3,18 +3,30 @@ package com.example.gooddeeds;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import org.w3c.dom.Text;
+
+import java.util.concurrent.TimeUnit;
+
 public class SignUp_Activity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +38,6 @@ public class SignUp_Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
         JobClassDAO dao = db.jobDao();
@@ -62,7 +73,6 @@ public class SignUp_Activity extends AppCompatActivity {
                         errMsg.setText("This email already exist");
                         return;
                     }
-
 
                     User newUser = new User(em, pass, fname, lastName.getText().toString(), phn, add);
                     dao.insertUser(newUser);

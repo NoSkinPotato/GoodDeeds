@@ -50,7 +50,7 @@ public class ChatMenuActivity extends AppCompatActivity {
             mainHandler.post(() -> {
                 if(!users.isEmpty()){
                     Log.d("JIPIPIPI", "Stupid");
-                    ChatAdapter adapter = new ChatAdapter(users, currUser, this);
+                    ChatAdapter adapter = new ChatAdapter(users, currUser, this, db);
                     chatView.setAdapter(adapter);
                 }else{
                     Log.d("GABABA", "Stupid");

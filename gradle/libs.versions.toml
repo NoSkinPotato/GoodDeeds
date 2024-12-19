@@ -1,5 +1,7 @@
 [versions]
 agp = "8.7.0"
+firebaseBom = "33.7.0"
+firebaseMessaging = "24.1.0"
 gson = "2.10.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -9,8 +11,14 @@ material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
 roomCommon = "2.6.1"
+firebaseDatabase = "21.0.0"
+firebaseInappmessagingDisplay = "21.0.1"
+firebasePerf = "21.0.3"
+googleFirebaseFirebasePerf = "1.4.2"
 
 [libraries]
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessaging" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -20,7 +28,11 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-inappmessaging-display = { group = "com.google.firebase", name = "firebase-inappmessaging-display", version.ref = "firebaseInappmessagingDisplay" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-perf", version.ref = "firebasePerf" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-firebase-firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "googleFirebaseFirebasePerf" }
 

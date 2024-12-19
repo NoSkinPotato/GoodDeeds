@@ -21,7 +21,21 @@
             android:id="@+id/JobView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/NoJobsText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="No Available Jobs"
+            android:gravity="center"
+            android:textColor="#EEE4B1"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            />
 
         <Button
             android:id="@+id/AddJobButton"
