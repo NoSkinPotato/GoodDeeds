@@ -5,20 +5,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "declined_job_tbl",
-        primaryKeys = {"userGmail", "posterGmail", "id"})
 public class DeclinedJob {
 
-    public DeclinedJob(@NonNull String userGmail, @NonNull String posterGmail, @NonNull String id) {
-        this.userGmail = userGmail;
-        this.posterGmail = posterGmail;
+    public DeclinedJob(@NonNull String userID, @NonNull String id) {
+        this.userID = userID;
         this.id = id;
     }
 
+    public DeclinedJob(){};
+
     @NonNull
-    public String userGmail;
-    @NonNull
-    public String posterGmail;
+    public String userID;
     @NonNull
     public String id;
 

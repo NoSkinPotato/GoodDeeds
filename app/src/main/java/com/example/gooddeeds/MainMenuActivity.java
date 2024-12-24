@@ -2,6 +2,7 @@ package com.example.gooddeeds;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,7 +22,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,6 +39,12 @@ import java.util.List;
 public class MainMenuActivity extends AppCompatActivity {
 
     private User currUser;
+
+    private List<Job> allJobs = new ArrayList<>();
+    TextView noJobs;
+    RecyclerView jobView;
+
+    private static final String TAG = "MainMenuActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,33 +57,14 @@ public class MainMenuActivity extends AppCompatActivity {
             return insets;
         });
 
-
-
         currUser = (User) getIntent().getSerializableExtra("User");
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-
-        RecyclerView jobView = findViewById(R.id.JobView);
+        jobView = findViewById(R.id.JobView);
         jobView.setLayoutManager(new LinearLayoutManager(this));
 
-        TextView noJobs = findViewById(R.id.NoJobsText);
+        noJobs = findViewById(R.id.NoJobsText);
 
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-
-        executor.execute(() -> {
-            List<Job> jobs = db.jobDao().getAllJobs(currUser.email);
-
-            mainHandler.post(() -> {
-                if(!jobs.isEmpty()){
-                    ItemAdapter adapter = new ItemAdapter(this, currUser, jobs);
-                    jobView.setAdapter(adapter);
-                }else{
-                    jobView.setVisibility(View.GONE);
-                    noJobs.setVisibility(View.VISIBLE);
-                }
-            });
-        });
+        GenerateJobs(this);
 
         Button addJobBtn = findViewById(R.id.AddJobButton);
         addJobBtn.setOnClickListener(e -> {
@@ -94,4 +91,67 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
     }
+
+    private void GenerateJobs(Context context) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Job");
+        DatabaseReference decRef = database.getReference("DeclineJob");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (allJobs != null) allJobs.clear();
+                for (DataSnapshot jobSnapshot : snapshot.getChildren()) {
+                    Job job = jobSnapshot.getValue(Job.class);
+                    if (job != null && job.workerID == null) {
+                        allJobs.add(job);
+                    }
+                }
+
+                decRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        for (Job job : allJobs){
+                            String x = currUser.userID + "|" + job.id;
+                            for (DataSnapshot data : snapshot.getChildren()){
+                                Log.d(TAG, data.getKey() + " | " + x);
+                                if (Objects.equals(data.getKey(), x)){
+                                    Log.d(TAG, "Remove job : " + job.id);
+                                    allJobs.remove(job);
+                                }
+                            }
+                        }
+
+                        if(!allJobs.isEmpty()){
+                            ItemAdapter adapter = new ItemAdapter(context, currUser, allJobs);
+                            jobView.setAdapter(adapter);
+                        }else{
+                            Log.d(TAG, "empty");
+                            jobView.setVisibility(View.GONE);
+                            noJobs.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+
+            }
+        });
+
+
+    }
+
 }
+

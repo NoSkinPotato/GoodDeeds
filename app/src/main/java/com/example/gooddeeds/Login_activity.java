@@ -1,8 +1,10 @@
 package com.example.gooddeeds;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -10,12 +12,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Login_activity extends AppCompatActivity {
+
+    private static final String TAG = "Login";
+
+    private CheckBox remember;
+    private TextView errMsg;
+
+    private String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,46 +49,25 @@ public class Login_activity extends AppCompatActivity {
         EditText passInput = findViewById(R.id.LoginPassInput);
         ImageView seePass = findViewById(R.id.seePassLogin);
         ImageView backBtn = findViewById(R.id.BackBtn);
-        CheckBox remember = findViewById(R.id.rememberMeBox);
-        TextView errMsg = findViewById(R.id.loginErrMsg);
+        remember = findViewById(R.id.rememberMeBox);
+        errMsg = findViewById(R.id.loginErrMsg);
 
         User rememberUser = RememberMe.getObject(this, "Remember");
 
         if(rememberUser != null){
-
+            Log.d("Saved", "isLoaded");
             emailInput.setText(rememberUser.email);
             passInput.setText(rememberUser.password);
-
         }
-
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-        JobClassDAO dao = db.jobDao();
 
         login.setOnClickListener(v -> {
 
             String email = emailInput.getText().toString();
-            String pass = passInput.getText().toString();
+            pass = passInput.getText().toString();
 
             if(!email.isEmpty() && !pass.isEmpty()){
+                GenerateUserLogin(email, pass,this);
 
-                User oldUser = dao.getUserbyEmail(email);
-                if(oldUser != null){
-                    if(pass.equals(oldUser.password)){
-
-                        if(remember.isChecked()){
-                            RememberMe.saveObject(this, "Remember", oldUser);
-                        }
-
-                        Intent intent = new Intent(this, MainMenuActivity.class);
-                        intent.putExtra("User", oldUser);
-                        startActivity(intent);
-
-                    }else{
-                        errMsg.setText("Invalid Password");
-                    }
-                }else{
-                    errMsg.setText("Invalid Email");
-                }
             }else{
                 errMsg.setText("Both Password and Email must be filled");
             }
@@ -95,8 +90,46 @@ public class Login_activity extends AppCompatActivity {
 
         backBtn.setOnClickListener(func -> {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
 
+    }
+
+    private void GenerateUserLogin(String email, String password, Context context){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("User");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot userSnapShot : snapshot.getChildren()){
+                    User user = userSnapShot.getValue(User.class);
+                    if (user != null && user.email.equals(email)){
+                        if (user.password.equals(password)){
+                            if(remember.isChecked()){
+                                Log.d("Saved", "isSaved");
+                                RememberMe.saveObject(context, "Remember", user);
+                            }
+                            Intent intent = new Intent(context, MainMenuActivity.class);
+                            intent.putExtra("User", user);
+                            context.startActivity(intent);
+                        }else{
+                            errMsg.setText("Wrong Password");
+                        }
+                        return;
+                    }
+                }
+                errMsg.setText("Email not found");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+
+            }
+        });
     }
 }

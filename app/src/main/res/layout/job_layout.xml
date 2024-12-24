@@ -14,10 +14,10 @@
         android:layout_height="200dp"
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
-        android:id="@+id/JobBackground"
         android:paddingVertical="15dp">
 
         <LinearLayout
+            android:id="@+id/JobBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2.7"
@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1.6"
+                android:ellipsize="end"
                 android:text="Example Job 1"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -51,6 +52,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="0dp"
                     android:layout_weight="10"
+                    android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLength="50"
                     android:text="Distance"
@@ -66,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:ellipsize="end"
                 android:padding="3dp"
                 android:text="lorem ipsum"
                 android:textColor="@color/black" />
@@ -96,13 +99,13 @@
                 android:id="@+id/waitWorkers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
                 android:text="Awaiting Workers"
                 android:textColor="@color/black"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold" />
 
             <Button
@@ -110,15 +113,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
                 android:backgroundTint="#FF0000"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
                 android:paddingVertical="10dp"
                 android:text="Remove"
                 android:textColor="@color/white"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold"
                 app:cornerRadius="20dp" />
 
@@ -127,35 +130,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
                 android:backgroundTint="#64C3BF"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
                 android:paddingVertical="15dp"
                 android:text="Accept"
                 android:textColor="#35374B"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold"
-                app:cornerRadius="15dp"
-                />
+                app:cornerRadius="15dp" />
 
             <Button
                 android:id="@+id/declineButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
                 android:backgroundTint="#35374B"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
                 android:paddingVertical="15dp"
                 android:text="Decline"
                 android:textColor="@color/white"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeMaxTextSize="30sp"
                 android:textStyle="bold"
-                app:cornerRadius="15dp"/>
+                app:cornerRadius="15dp" />
 
 
         </LinearLayout>

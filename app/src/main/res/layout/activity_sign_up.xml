@@ -12,7 +12,7 @@
 
 
     <ImageView
-        android:id="@+id/BackBtn"
+        android:id="@+id/backBtn"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:layout_weight="0.2"

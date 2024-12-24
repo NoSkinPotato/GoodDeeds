@@ -1,36 +1,31 @@
 package com.example.gooddeeds;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
 
-@Entity(tableName = "job_tbl",
-        primaryKeys = {"id", "userGmail"})
-public class Job {
+import java.io.Serializable;
 
-    public Job(@NonNull String userGmail, @NonNull String id, String title, String description, String address, int reward, String workerEmail) {
-        this.userGmail = userGmail;
-        this.id = id;
+public class Job implements Serializable {
+
+    public Job(@NonNull String userID, @NonNull String id, String title, String description, String address, int reward, String workerID) {
+        this.userID = userID;
         this.title = title;
+        this.id = id;
         this.description = description;
         this.address = address;
         this.reward = reward;
-        this.workerEmail = workerEmail;
+        this.workerID = workerID;
     }
 
-    @NonNull
-    public String userGmail;
-    @NonNull
+    public Job(){
+
+    }
+
+    public String userID;
     public String id;
-    @ColumnInfo(name = "title")
     public String title;
-    @ColumnInfo(name = "description")
     public String description;
-    @ColumnInfo(name = "address")
     public String address;
-    @ColumnInfo(name = "reward")
     public int reward;
-    @ColumnInfo(name = "worker")
-    public String workerEmail;
+    public String workerID;
 
 }

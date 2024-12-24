@@ -1,5 +1,6 @@
 package com.example.gooddeeds;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -21,11 +22,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 
 public class SignUp_Activity extends AppCompatActivity {
+
+    private static final String TAG = "SignIn";
+    private TextView errMsg;
+    private String fname;
+    private String em;
+    private String phn;
+    private String add;
+    private String pass;
+    private String lname;
 
 
     @Override
@@ -39,9 +55,6 @@ public class SignUp_Activity extends AppCompatActivity {
             return insets;
         });
 
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-        JobClassDAO dao = db.jobDao();
-
         EditText firstName = findViewById(R.id.firstName);
         EditText lastName = findViewById(R.id.lastName);
         EditText email = findViewById(R.id.email);
@@ -50,43 +63,42 @@ public class SignUp_Activity extends AppCompatActivity {
         EditText createPass = findViewById(R.id.createPass);
         EditText confirmPass = findViewById(R.id.confirmPass);
         Button signUpBtn = findViewById(R.id.SignUpBtn);
-        TextView errMsg = findViewById(R.id.signErrMsg);
+        errMsg = findViewById(R.id.signErrMsg);
 
         signUpBtn.setOnClickListener(func -> {
 
-            String fname = firstName.getText().toString();
-            String em = email.getText().toString();
-            String phn = phone.getText().toString();
-            String add = address.getText().toString();
-            String pass = createPass.getText().toString();
+            fname = firstName.getText().toString();
+            em = email.getText().toString();
+            phn = phone.getText().toString();
+            add = address.getText().toString();
+            pass = createPass.getText().toString();
+            lname = lastName.getText().toString();
 
             if (!fname.isEmpty() &&
-                !em.isEmpty() &&
-                !phn.isEmpty() &&
-                !add.isEmpty() &&
-                !pass.isEmpty()){
+                    !em.isEmpty() &&
+                    !phn.isEmpty() &&
+                    !add.isEmpty() &&
+                    !pass.isEmpty()) {
 
 
-                if(pass.equals(confirmPass.getText().toString())){
+                if (pass.equals(confirmPass.getText().toString())) {
 
-                    if(dao.CheckEmail(em) != null){
-                        errMsg.setText("This email already exist");
-                        return;
-                    }
+                    CheckUserEmail(this, em);
 
-                    User newUser = new User(em, pass, fname, lastName.getText().toString(), phn, add);
-                    dao.insertUser(newUser);
-
-                    Intent intent = new Intent(this, MainMenuActivity.class);
-                    intent.putExtra("User", newUser);
-                    startActivity(intent);
-
-                }else{
+                } else {
                     errMsg.setText("Password confirmation is incorrect");
                 }
-            }else{
+            } else {
                 errMsg.setText("All Data Must Be Filled");
             }
+        });
+
+        ImageView backBtn = findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(e -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         });
 
 
@@ -116,7 +128,67 @@ public class SignUp_Activity extends AppCompatActivity {
 
             confirmPass.setSelection(confirmPass.getText().length());
         });
-
-
     }
+
+    private void CheckUserEmail(Context context, String email) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("User");
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    User user = userSnapshot.getValue(User.class);
+                    if (user != null && user.email.equals(email)) {
+                        errMsg.setText("The Following Email already exist");
+                        return;
+                    }
+                }
+
+                GenerateUserAccount(context, Post_Job_Activity.getRandomString(3));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    private void GenerateUserAccount(Context context, String userID) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("User");
+
+        myRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+                    GenerateUserAccount(context, Post_Job_Activity.getRandomString(3));
+                    return;
+                }
+                User newUser = new User(userID, em, pass, fname, lname, phn, add);
+                myRef.child(userID).setValue(newUser)
+                        .addOnSuccessListener(aVoid -> {
+                            Log.d(TAG, "User added successfully.");
+                            Intent intent = new Intent(context, MainMenuActivity.class);
+                            intent.putExtra("User", newUser);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            context.startActivity(intent);
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "Error adding user: " + e.getMessage());
+                        });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
 }

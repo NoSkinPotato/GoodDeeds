@@ -56,8 +56,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ChatBoxV
 
         holder.message.setText(chat.text);
 
-        if (chat.chatID.startsWith(currUser.email)){
-            //FromUser
+        if (chat.senderID.equals(currUser.userID)){
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.messageBox.getLayoutParams();
             params.gravity = Gravity.END;
             holder.messageBox.setLayoutParams(params);
@@ -65,7 +64,6 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ChatBoxV
             holder.messageBox.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
             holder.message.setTextColor(Color.WHITE);
         }else{
-            //FromOtherUser
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.messageBox.getLayoutParams();
             params.gravity = Gravity.START;
             holder.messageBox.setLayoutParams(params);
@@ -74,12 +72,16 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ChatBoxV
             holder.messageBox.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#64C3BF")));
         }
 
-
-
     }
     @Override
     public int getItemCount() {
         return allMessages.size();
+    }
+
+    public void updateList(List<Chat> newList) {
+        allMessages.clear();
+        allMessages.addAll(newList);
+        notifyDataSetChanged();
     }
 
 }
