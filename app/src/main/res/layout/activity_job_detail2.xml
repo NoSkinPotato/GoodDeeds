@@ -18,7 +18,7 @@
         android:paddingHorizontal="5dp"
         android:paddingVertical="15dp"
         app:srcCompat="@drawable/arrow"
-        app:tint="@color/white" />
+        app:tint="@color/black" />
 
     <LinearLayout
         android:id="@+id/content"
@@ -38,7 +38,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="left|center_vertical"
             android:text="Posted by: You"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="left|center_vertical"
             android:text="Job Titled sdsad dsad sadasd"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -125,9 +125,12 @@
             android:gravity="center"
             android:layout_gravity="center_vertical"
             android:paddingHorizontal="0dp"
-            android:text="Awaiting Workers"
+            android:text="Awaiting\nWorkers"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:fontFamily="@font/akira"
+            android:autoSizeMaxTextSize="14sp"
+            android:autoSizeMinTextSize="1sp"
+            android:autoSizeTextType="uniform"
             android:textStyle="bold"
             android:layout_marginHorizontal="7.5dp"/>
 

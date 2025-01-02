@@ -1,12 +1,15 @@
 package com.example.gooddeeds;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -38,6 +41,7 @@ public class JobDetail extends AppCompatActivity {
     private Button declineBtn ;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,13 @@ public class JobDetail extends AppCompatActivity {
         currUser = (User) getIntent().getSerializableExtra("User");
         currJob = (Job) getIntent().getSerializableExtra("Job");
 
+        LinearLayout background = findViewById(R.id.main);
+
+        if (!Objects.equals(currJob.userID, currUser.userID)){
+            background.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }else{
+            background.setBackgroundColor(Color.parseColor("#FFA200"));
+        }
 
         ImageView backBtn = findViewById(R.id.ButtonToGoBack);
 

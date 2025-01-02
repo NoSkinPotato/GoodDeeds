@@ -4,12 +4,11 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="#FFA200"
-    app:cardCornerRadius="30dp"
-    android:layout_marginVertical="10dp">
-
+    android:layout_marginVertical="5dp"
+    app:cardCornerRadius="30dp">
 
     <LinearLayout
+        android:id="@+id/JobBackground"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="horizontal"
@@ -17,7 +16,7 @@
         android:paddingVertical="15dp">
 
         <LinearLayout
-            android:id="@+id/JobBackground"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2.7"
@@ -29,9 +28,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="1.6"
                 android:ellipsize="end"
+                android:fontFamily="@font/mont"
+                android:gravity="center_vertical"
                 android:text="Example Job 1"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -78,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/mont"
                 android:gravity="center_vertical"
                 android:text="Reward : Rp 100.000"
                 android:textColor="@color/black"
@@ -99,14 +101,17 @@
                 android:id="@+id/waitWorkers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoSizeMaxTextSize="30sp"
-                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeMinTextSize="1sp"
                 android:autoSizeTextType="uniform"
+                android:fontFamily="@font/akira"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
-                android:text="Awaiting Workers"
+                android:paddingVertical="10dp"
+                android:text="Awaiting\nWorkers"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+              />
 
             <Button
                 android:id="@+id/removeJobBtn"
@@ -117,12 +122,14 @@
                 android:autoSizeMinTextSize="10sp"
                 android:autoSizeTextType="uniform"
                 android:backgroundTint="#FF0000"
+                android:fontFamily="@font/mont"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
-                android:paddingVertical="10dp"
+                android:paddingVertical="15dp"
                 android:text="Remove"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textStyle="normal"
                 app:cornerRadius="20dp" />
 
             <Button
@@ -134,6 +141,7 @@
                 android:autoSizeMinTextSize="10sp"
                 android:autoSizeTextType="uniform"
                 android:backgroundTint="#64C3BF"
+                android:fontFamily="@font/mont"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
                 android:paddingVertical="15dp"
@@ -151,6 +159,7 @@
                 android:autoSizeMinTextSize="10sp"
                 android:autoSizeTextType="uniform"
                 android:backgroundTint="#35374B"
+                android:fontFamily="@font/mont"
                 android:gravity="center"
                 android:paddingHorizontal="0dp"
                 android:paddingVertical="15dp"

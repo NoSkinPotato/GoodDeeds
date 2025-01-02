@@ -1,5 +1,6 @@
 package com.example.gooddeeds;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
@@ -81,13 +83,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Job job = jobsList.get(position);
-        if (job == null) Log.d("Stupid", "THing");
         holder.jobTitle.setText(job.title);
         holder.jobDescription.setText(job.description);
         holder.jobDistance.setText(job.address);
+
+        if (!Objects.equals(job.userID, currUser.userID)){
+            holder.background.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }else{
+            holder.background.setBackgroundColor(Color.parseColor("#FFA200"));
+        }
 
         holder.background.setOnClickListener(e -> {
             Intent intent1 = new Intent(context, JobDetail.class);
@@ -128,7 +136,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         DatabaseReference declineJobRef = database.getReference("DeclineJob");
 
         removeBtn.setOnClickListener(func -> {
-            Log.d("WOIIII", "Gay ass " + currJob.id);
             jobRef.child(currJob.id).removeValue()
                     .addOnSuccessListener(e -> {
                         Log.d(TAG, "Job Deleted Successfully");

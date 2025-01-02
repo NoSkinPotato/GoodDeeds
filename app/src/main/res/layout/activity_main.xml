@@ -19,6 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:text="Welcome!"
             android:textAlignment="center"
             android:textColor="#64C3BF"
@@ -28,6 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/coolvetica"
             android:text="Do Good | Feel Good"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -40,6 +42,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="2.5"
+        android:backgroundTint="#2B2D30"
         android:contentDescription="good deeds logo"
         android:padding="50px"
         app:srcCompat="@drawable/good_deeds" />
@@ -56,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#35374B"
+            android:fontFamily="@font/coolvetica"
             android:gravity="center"
             android:paddingHorizontal="150px"
             android:paddingVertical="20px"
@@ -70,14 +74,16 @@
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#64C3BF"
+            android:backgroundTint="#2B2D30"
+            android:fontFamily="@font/coolvetica"
             android:gravity="center"
             android:paddingHorizontal="120px"
             android:paddingVertical="20px"
             android:text="Sign Up"
             android:textSize="25sp"
             app:cornerRadius="30px"
-            app:strokeColor="#64C3BF"
+            android:textColor="@color/white"
+            app:strokeColor="#388C89"
             app:strokeWidth="8px" />
 
 

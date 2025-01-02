@@ -23,13 +23,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginVertical="15dp"
         android:layout_weight="0.15"
-        android:text="Create Account"
+        android:fontFamily="sans-serif"
         android:gravity="center|center_vertical"
-        android:textSize="35sp"
-        android:textStyle="bold"
+        android:text="Create Account"
         android:textColor="#64C3BF"
-        android:layout_marginVertical="15dp"/>
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                 android:hint="First Name"
                 android:textColor="#7077A1"
                 android:textColorHint="#7077A1"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -80,7 +81,7 @@
                 android:hint="Last Name"
                 android:textColor="#7077A1"
                 android:textColorHint="#7077A1"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -103,7 +104,7 @@
                 android:inputType="text|textEmailAddress"
                 android:textColor="#7077A1"
                 android:textColorHint="#7077A1"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
@@ -124,12 +125,12 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
                 android:backgroundTint="@android:color/transparent"
+                android:gravity="center_vertical|left"
                 android:hint="Phone Number"
                 android:inputType="number"
-                android:gravity="center_vertical|left"
                 android:textColor="#7077A1"
                 android:textColorHint="#7077A1"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
@@ -152,7 +153,7 @@
                 android:hint="Address"
                 android:textColor="#7077A1"
                 android:textColorHint="#7077A1"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
@@ -181,10 +182,10 @@
                     android:layout_weight="5"
                     android:backgroundTint="@android:color/transparent"
                     android:hint="Create Password"
+                    android:inputType="textPassword"
                     android:textColor="#7077A1"
                     android:textColorHint="#7077A1"
-                    android:inputType="textPassword"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/passCreateSign"
@@ -225,10 +226,10 @@
                     android:layout_weight="5"
                     android:backgroundTint="@android:color/transparent"
                     android:hint="Confirm Password"
+                    android:inputType="textPassword"
                     android:textColor="#7077A1"
                     android:textColorHint="#7077A1"
-                    android:inputType="textPassword"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/passConfirmSign"
@@ -264,12 +265,14 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
-        android:layout_weight="0.15"
-        android:backgroundTint="#64C3BF"
+        android:layout_weight="0.2"
+        android:backgroundTint="#388C89"
+        android:fontFamily="@font/coolvetica"
         android:gravity="center"
+        android:textColor="@color/white"
         android:paddingHorizontal="55dp"
         android:text="Sign Up"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:cornerRadius="15dp" />
 
 

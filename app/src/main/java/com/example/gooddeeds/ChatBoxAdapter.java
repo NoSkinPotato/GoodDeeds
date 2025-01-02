@@ -82,6 +82,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.ChatBoxV
         allMessages.clear();
         allMessages.addAll(newList);
         notifyDataSetChanged();
+
     }
 
 }

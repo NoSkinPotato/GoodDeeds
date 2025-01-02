@@ -117,7 +117,7 @@ public class ChatActivity extends AppCompatActivity {
                         if(!messages.isEmpty()){
                             adapter = new ChatBoxAdapter(messages, currUser);
                             chatBoxView.setAdapter(adapter);
-
+                            chatBoxView.scrollToPosition(adapter.getItemCount()-1);
                         }else{
                             chatBoxView.setVisibility(View.INVISIBLE);
                         }
@@ -187,6 +187,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 inputField.setText("");
                 adapter.updateList(messages);
+                chatBoxView.scrollToPosition(adapter.getItemCount()-1);
             }
 
             @Override
