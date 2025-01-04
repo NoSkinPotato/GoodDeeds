@@ -78,6 +78,7 @@ public class ChatActivity extends AppCompatActivity {
         backBtn.setOnClickListener(e -> {
             Intent intent = new Intent(this, ChatMenuActivity.class);
             intent.putExtra("User", currUser);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
     }

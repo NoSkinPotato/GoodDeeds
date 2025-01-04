@@ -160,6 +160,7 @@
             android:layout_weight="0.2"
             android:backgroundTint="#FF0000"
             android:text="Log Out"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 

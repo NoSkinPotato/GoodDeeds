@@ -167,6 +167,7 @@
         android:layout_marginVertical="10dp"
         android:backgroundTint="#388C89"
         android:paddingHorizontal="70dp"
+        android:textColor="@color/white"
         android:text="Login"
         android:textSize="25sp"
         app:cornerRadius="10dp" />

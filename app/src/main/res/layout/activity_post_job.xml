@@ -137,6 +137,7 @@
         android:backgroundTint="#64C3BF"
         android:paddingHorizontal="80dp"
         android:text="POST"
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:cornerRadius="20dp" />
 
